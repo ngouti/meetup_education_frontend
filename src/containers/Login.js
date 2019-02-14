@@ -1,4 +1,7 @@
 import React from 'react'
+import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import './login.css'
+import NavBar from './NavBar'
 
 class Login extends React.Component {
 
@@ -45,21 +48,32 @@ class Login extends React.Component {
     
       render() {
         return (
-          <div>
+            <div>
+                <NavBar />
             
-            <form>
-              <div className="form">
-                <label>Username</label>
-                <input onChange={this.handleChange} value={this.state.username} name="username" type="text" 
-                />
-              </div>
-              <div className="form">
-                <label>Password</label>
-                <input onChange={this.handleChange} value={this.state.password} name="password" type="text"
-                />
-              </div>
-              <button onClick={this.login}>Login</button>
-            </form>
+          <div class="login">
+            
+
+          <h1>Login</h1>
+              <Form>
+                <FormGroup row>
+                <Label for="exampleEmail" sm={2} size="lg">UserName</Label>
+                <Col sm={10}>
+                    <Input onChange={this.handleChange} value={this.state.username} name="username" type="text" placeholder="UserName" bsSize="lg" />
+                </Col>
+                </FormGroup>
+                <FormGroup row>
+                <Label for="exampleEmail2" sm={2}>Email</Label>
+                <Col sm={10}>
+                    <Input onChange={this.handleChange} value={this.state.password} name="password" type="text" placeholder="Password" />
+                </Col>
+                </FormGroup>
+                <Button onClick={this.login}>Submit</Button>
+            </Form>
+
+
+            
+          </div>
           </div>
         )
       }

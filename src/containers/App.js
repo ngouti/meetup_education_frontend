@@ -50,7 +50,7 @@ class App extends Component {
       <div className="App">
       <Router>
         <Switch>
-          <EventForm />
+          {/* <EventForm /> */}
           <Route path="/EventList" component={(props) =>  <EventList {...props} />} />
         <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} />} />
 
