@@ -4,6 +4,9 @@ import { Switch } from 'react-router'
 
 import Login from './Login'
 import SignUp from './SignUp'
+import UserProfile from './UserProfile'
+import EventList from './EventList'
+
 
 import NavBar from './NavBar'
 
@@ -21,7 +24,10 @@ class App extends Component {
   setCurrentUser = (token, user) => {
     localStorage.setItem('token', token)
     localStorage.setItem('user', JSON.stringify(user))
-    this.setState ({ token: token, user: user })
+    this.setState ({ 
+      token: token, 
+      user: user 
+    })
   }
 
   
@@ -38,10 +44,15 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
       <Router>
         <Switch>
+          {/* <NavBar /> */}
+          <Route path="/EventList" component={(props) =>  <EventList {...props} />} />
+        <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} />} />
+
         <Route path="/login" render={(props) =>  <Login {...props} setUser={this.setCurrentUser} />} />
         <Route path="/signup" render={ props => <SignUp {...props} onSignUp={this.setCurrentUser} />}/>
         </Switch>

@@ -20,13 +20,14 @@ export class SignUp extends React.Component {
     }
 
   handleSubmit = e => {
-    server.post(`http://localhost:3000/api/v1/users/`, JSON.stringify(this.state))
+    server.post(`http://localhost:3000/users`, JSON.stringify(this.state))
             .then( user => {
                 this.props.onSignUp(user.token, user)
             })
             .then(() => {
                 this.routeTo('/login')
               })
+            //   debugger
             //   .then(console.log)
 
   }
