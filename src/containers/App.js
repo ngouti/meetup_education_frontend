@@ -9,7 +9,9 @@ import EventList from './EventList'
 import EventForm from './EventForm'
 
 
+
 import NavBar from './NavBar'
+import EventPage from '../containers/EventPage';
 
 
 
@@ -56,11 +58,18 @@ class App extends Component {
       <Router>
         <Switch>
           {/* <EventForm /> */}
-          <Route path="/EventList" component={(props) =>  <EventList {...props} />} />
-        <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} />} />
+          <Route exact path="/events" component={(props) =>  <EventList {...props} />} />
+          <Route path="/events/new" component={EventForm} />                    
+          <Route path="/events/:id/edit" component={EventForm}/>
+          <Route path="/events/:id" component={EventPage} />
+          
+          
+          <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} />} />
 
-        <Route path="/login" render={(props) =>  <Login {...props} setUser={this.setCurrentUser} />} />
-        <Route path="/signup" render={ props => <SignUp {...props} onSignUp={this.setCurrentUser} />}/>
+          <Route path="/login" render={(props) =>  <Login {...props} setUser={this.setCurrentUser} />} />
+          <Route path="/signup" render={ props => <SignUp {...props} onSignUp={this.setCurrentUser} />}/>
+       
+
         </Switch>
       </Router>
        
