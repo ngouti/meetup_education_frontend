@@ -1,18 +1,21 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './eventform.css'
+import NavBar from './NavBar'
 
 export default class EventForm extends React.Component {
   render() {
     return (
+        <div>
+            <NavBar />
         <div className="form">
       <Form>
         <FormGroup>
           <Label for="exampleEmail">Make a New Event!</Label>
-          <Input plaintext value="Some plain text/ static value" />
+          {/* <Input plaintext value="Some plain text/ static value" /> */}
         </FormGroup>
         <FormGroup>
-          <Label for="exampleEmail">Email</Label>
+          <Label for="exampleEmail">Event Name</Label>
           <Input
             type="email"
             name="email"
@@ -141,6 +144,7 @@ export default class EventForm extends React.Component {
           </Label>
         </FormGroup>
       </Form>
+      </div>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { server } from './server'
-
+// import { server } from './server'
+import './signup.css'
 
 export class SignUp extends React.Component {
   state =  { 
@@ -14,20 +14,40 @@ export class SignUp extends React.Component {
     
 
     handleChange = (e) => {
+      // debugger
+      // console.log(e.target.name)
         this.setState({
             [e.target.name]:e.target.value
         })
     }
 
   handleSubmit = e => {
-    server.post(`http://localhost:3000/users`, JSON.stringify(this.state))
-            .then( user => {
-                this.props.onSignUp(user.token, user)
-            })
-            .then(() => {
-                this.routeTo('/login')
-              })
-            //   debugger
+    e.preventDefault()
+
+    // debugger
+    // console.log(this.state)
+    fetch(`http://localhost:3000/users`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}` 
+      },
+      body: JSON.stringify(this.state)
+  })
+      .then(resp => resp.json())
+      .then(() => {
+        this.routeTo('/login')
+         })
+
+      // .then(console.log)
+
+
+    // server.post(`http://localhost:3000/users`, JSON.stringify(this.state))
+    //         .then(user => console.log('user', user))
+            // .then(() => {
+            //     this.routeTo('/login')
+            //   })
+            // //   debugger
             //   .then(console.log)
 
   }
@@ -38,49 +58,46 @@ export class SignUp extends React.Component {
 
   render() {
     return (
+      <div className="signup">
       <form onSubmit={e => {this.handleSubmit(e);}}>
         <h3>SignUp</h3>
-        <div className="form">
+        <div>
           <label>Username</label>
             <input
                 name="username"
                 placeholder="Enter username"
                 value={this.state.username}
-                className="form-control"
                 type="text"
                 onChange={e => this.handleChange(e)}
             />
         </div>
-        <div className="form">
+        <div>
           <label>Email</label>
             <input
                 name="email"
                 placeholder="Enter email"
                 value={this.state.email}
-                className="form-control"
                 type="email"
                 onChange={e => this.handleChange(e)}
             />
         </div>
 
-        <div className="form">
+        <div>
           <label>Password</label>
             <input
                 name="password"
                 placeholder="Enter password"
                 value={this.state.password}
-                className="form-control"
                 type="password"
                 onChange={e => this.handleChange(e)}
             />
         </div>
-        <div className="form">
+        <div>
           <label>Name</label>
             <input
                 name="name"
                 placeholder="Enter Name"
                 value={this.state.name}
-                className="form-control"
                 type="name"
                 onChange={e => this.handleChange(e)}
             />
@@ -98,6 +115,7 @@ export class SignUp extends React.Component {
         </div>
         <button >Sign Up</button>
       </form>
+      </div>
     );
   }
 }

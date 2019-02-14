@@ -63,7 +63,7 @@ class Login extends React.Component {
                 </Col>
                 </FormGroup>
                 <FormGroup row>
-                <Label for="exampleEmail2" sm={2}>Email</Label>
+                <Label for="exampleEmail2" sm={2}>Password</Label>
                 <Col sm={10}>
                     <Input onChange={this.handleChange} value={this.state.password} name="password" type="text" placeholder="Password" />
                 </Col>

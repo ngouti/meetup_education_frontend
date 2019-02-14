@@ -23,29 +23,34 @@ class App extends Component {
   }
 
   setCurrentUser = (token, user) => {
+    // console.log('before',user)
     localStorage.setItem('token', token)
     localStorage.setItem('user', JSON.stringify(user))
     this.setState ({ 
       token: token, 
       user: user 
     })
+    // console.log('after',user)
+
+    // debugger
   }
 
   
 
 
 
-  logoutUser = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.setCurrentUser(null);
-    this.props.history.push("/login");
-  }
+  // logoutUser = () => {
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('user');
+  //   // this.setCurrentUser(null);
+  //   this.props.history.push("/login");
+  // }
 
 
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
+    // console.log(this.state.user)
     return (
       <div className="App">
       <Router>
