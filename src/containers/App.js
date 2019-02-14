@@ -6,6 +6,7 @@ import Login from './Login'
 import SignUp from './SignUp'
 import UserProfile from './UserProfile'
 import EventList from './EventList'
+import EventForm from './EventForm'
 
 
 import NavBar from './NavBar'
@@ -49,7 +50,7 @@ class App extends Component {
       <div className="App">
       <Router>
         <Switch>
-          {/* <NavBar /> */}
+          <EventForm />
           <Route path="/EventList" component={(props) =>  <EventList {...props} />} />
         <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} />} />
 
