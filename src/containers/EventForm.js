@@ -3,18 +3,60 @@ import { Button, FormGroup, Label, Input, FormText, CustomInput } from 'reactstr
 // import { Form } from 'reactstrap'; // commenting this out because it is duplicated with semantic
 import './eventform.css'
 import NavBar from './NavBar'
-
-
 import { Form } from 'semantic-ui-react'
  
 
 export default class EventForm extends React.Component {
+
+  state = {
+    title: '',
+    description: ''
+    // date: '',
+    // interest_ids: [], //selected type in form
+    // allInterests: [],
+    // organizer_ids: []
+  }
+
+
+  handleSubmit = (e) => {
+    
+    this.setState({
+        title: e.target.title.value,
+        description: e.target.description.value
+      }, () => this.postNewEvent())
+
+  }
+
+
+  postNewEvent = () => {
+    console.log('before post fetch', this.state)
+    fetch('http://localhost:3000/events', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(
+        {
+        title: this.state.title,
+        description: this.state.description
+        // interest_ids: this.state.interest_ids,
+        // organizer_ids: []
+        }
+      )
+    })
+    .then( res => res.json())
+    .then( ({ id }) => this.props.history.push(`/events/${id}`)) 
+  }
+
+
+
   render() {
+    console.log(this.state)
     return (
       <div>
         <NavBar />
         <div className="ui raised very padded text container segment">
-      <Form>
+      <Form onSubmit={(e) => this.handleSubmit(e)}>
         <h3>Create an Event</h3>
 
         <FormGroup>

@@ -58,7 +58,7 @@ class App extends Component {
       <Router>
         <Switch>
           {/* <EventForm /> */}
-          <Route exact path="/events" component={(props) =>  <EventList {...props} />} />
+          <Route exact path="/events" component={(props) =>  <EventList {...props} token={this.state.token}  />} />
           <Route path="/events/new" component={EventForm} />                    
           <Route path="/events/:id/edit" component={EventForm}/>
           <Route path="/events/:id" component={EventPage} />
