@@ -51,25 +51,22 @@ class App extends Component {
 
 
   render() {
-    // console.log(this.state)
-    // console.log(this.state.user)
     return (
       <div className="App">
+
+     
+      <NavBar currentUser={this.state.user}/>
       <Router>
         <Switch>
-          {/* <EventForm /> */}
-          <Route exact path="/events" component={(props) =>  <EventList {...props} token={this.state.token}  />} />
-          <Route path="/events/new" component={EventForm} />                    
-          <Route path="/events/:id/edit" component={EventForm}/>
-          <Route path="/events/:id" component={EventPage} />
+          <Route exact path="/events" component={(props) =>  <EventList {...props} token={this.state.token} />} />
+          <Route path="/events/new" component={(props) =>  <EventForm {...props} token={this.state.token} currentUser={this.state.user} />} />
+          <Route path="/events/:id" component={(props) =>  <EventPage {...props} token={this.state.token} currentUser={this.state.user} />} />
+          <Route path="/events/:id/edit" component={(props) =>  <EventForm {...props} token={this.state.token}  />} />
           
-          
-          <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} />} />
+          <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} currentUser={this.state.user}/>} />
 
           <Route path="/login" render={(props) =>  <Login {...props} setUser={this.setCurrentUser} />} />
           <Route path="/signup" render={ props => <SignUp {...props} onSignUp={this.setCurrentUser} />}/>
-       
-
         </Switch>
       </Router>
        

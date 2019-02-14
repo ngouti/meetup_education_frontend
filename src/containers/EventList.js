@@ -27,16 +27,15 @@ export default class EventList extends Component {
   
 
     render() {
-      console.log('eventlist state', this.state)
+      
         return (
         <div>
-          <NavBar />
-          event list
-             <Card.Group>
-                {this.state.events.map((event) => (
-                    <EventCard key={event.id} event={event} />
-                ))}
-            </Card.Group>
+          <br />
+          <Card.Group>
+            {this.state.events.map((event) => (
+                <EventCard key={event.id} event={event} />
+            ))}
+        </Card.Group>
         </div>
         )
     }

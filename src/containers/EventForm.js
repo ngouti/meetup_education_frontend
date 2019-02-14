@@ -9,12 +9,10 @@ import { Form } from 'semantic-ui-react'
 export default class EventForm extends React.Component {
 
   state = {
+    // date: '',
+    // time: '',
     title: '',
     description: ''
-    // date: '',
-    // interest_ids: [], //selected type in form
-    // allInterests: [],
-    // organizer_ids: []
   }
 
 
@@ -29,34 +27,49 @@ export default class EventForm extends React.Component {
 
 
   postNewEvent = () => {
-    console.log('before post fetch', this.state)
     fetch('http://localhost:3000/events', {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.props.token}`
       },
       body: JSON.stringify(
         {
-        title: this.state.title,
-        description: this.state.description
-        // interest_ids: this.state.interest_ids,
-        // organizer_ids: []
+          title: this.state.title,
+          description: this.state.description
         }
       )
     })
     .then( res => res.json())
-    .then( ({ id }) => this.props.history.push(`/events/${id}`)) 
+    .then( ({ id }) => this.postToUserEvents(id)  )
+    // .then( ({ id }) => this.props.history.push(`/events/${id}`)) 
   }
 
 
+  postToUserEvents = (eventID) => {
+    fetch('http://localhost:3000/user_arrangements', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.props.token}`
+      },
+      body: JSON.stringify(
+        {
+          user_id: this.props.currentUser.id,
+          event_id: eventID
+        }
+      )
+    })
+    .then( () => this.props.history.push(`/events/${eventID}`)) 
+  }
 
   render() {
-    console.log(this.state)
+   
     return (
       <div>
-        <NavBar />
+        {/* <NavBar /> */}
         <div className="ui raised very padded text container segment">
-      <Form onSubmit={(e) => this.handleSubmit(e)}>
+        <Form onSubmit={(e) => this.handleSubmit(e)}>
         <h3>Create an Event</h3>
 
         <FormGroup>
