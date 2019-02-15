@@ -9,6 +9,7 @@ import EventList from './EventList'
 import EventForm from './EventForm'
 import NavBar from './NavBar'
 import EventPage from '../containers/EventPage';
+import Home from './Home';
 
 
 
@@ -49,6 +50,9 @@ class App extends Component {
         <NavBar currentUser={this.state.user} logout={this.logout}/>
 
         <Switch>
+          <Route exact path="/" render={(props) => <Home />} />
+          <Route path="/home" render={(props) => <Home />} />
+
           {
             !this.state.user
             ? 

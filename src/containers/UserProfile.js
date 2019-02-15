@@ -84,48 +84,45 @@ export default class UserProfile extends Component {
   
 
     render() {
-    //    console.log('organizing these:', this.state.organizing)
-    //    console.log('attending these:' , this.state.attending)
-    //     let organizing = []
-    //     let attending = []
-        
-    //     if (organizing !== []) {this.state.organizing.map ( oe => (oe.map( e => (organizing.push(e)))))}
-    //     if (attending !== []) {this.state.attending.map ( oe => (oe.map( e => (attending.push(e)))))}
-        // console.log('this', attending)
        
         const { name, email } = this.state.user
 
         return (
-            <div className="card">
+            <div className="ui raised very padded text container segment">
+            {/* <div > */}
                 <UserCard {...this.state.user}/>
     
                 
-                <h4> Events You're Organizing  </h4>
+                {/* <div style={{width: '50%', float: 'left'}}> */}
+
+                    <h4> Events You're Organizing:  </h4>
+                    
+                    
                 
-                <div>
-            
-                    {this.state.organizing.map(o => (
-                        o.map(i => (
+                        {this.state.organizing.map(o => (
+                            o.map(i => (
+                                <EventCard event={i}/> 
+                            ))
+                            
+                        ))}
+                    
+                {/* </div> */}
+
+                {/* <div style={{width: '50%', float: 'left'}}> */}
+                    <h4> Events You're Attending:  </h4>
+
+                
+                    {this.state.attending.map(o => (
+                        o.filter(i=>
+                        i.title !== null
+                        ).map(i => (
                             <EventCard event={i}/> 
                         ))
-                        
+                    
                     ))}
-                </div>
-
-                
-                <h4> Events You're Attending  </h4>
-
-                <div>
-                {this.state.attending.map(o => (
-                    o.filter(i=>
-                    i.title !== null
-                    ).map(i => (
-                        <EventCard  event={i}/> 
-                    ))
-                
-                ))}
-                </div>
-         </div>
+                    
+                {/* </div> */}
+            </div>
         );
     }
 }

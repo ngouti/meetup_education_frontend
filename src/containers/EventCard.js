@@ -33,6 +33,13 @@ export default class Event extends Component {
                         View Details
                     </Button>
                 </Link>
+
+                
+                <Link to={`/events/${this.props.event.id}`}>
+                    <Button basic color='red' >
+                        Delete Event
+                    </Button>
+                </Link>
                 </div>
             </Card.Content>
         </Card>
