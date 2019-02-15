@@ -46,70 +46,65 @@ export class SignUp extends React.Component {
   
   render() {
     return (
-        <div className="ui raised very padded text container segment signup">
-           
+      <div className="ui raised very padded text container segment signup">
+  
+      <form onSubmit={e => {this.handleSubmit(e);}}>
+       <h3>SignUp</h3>
+       <div>
+       <label>Username</label>
+         <input
+               name="username"
+               placeholder="Enter username"
+               value={this.state.username}
+               type="text"
+               onChange={e => this.handleChange(e)}
+           />
+       </div>
+       <div>
+         <label>Email</label>
+           <input
+               name="email"
+               placeholder="Enter email"
+               value={this.state.email}
+               type="email"
+               onChange={e => this.handleChange(e)}
+           />
+       </div>
 
-
-
-
-
-       <form onSubmit={e => {this.handleSubmit(e);}}>
-        <h3>SignUp</h3>
-        <div>
-        <label>Username</label>
-          <input
-                name="username"
-                placeholder="Enter username"
-                value={this.state.username}
-                type="text"
-                onChange={e => this.handleChange(e)}
-            />
-        </div>
-        <div>
-          <label>Email</label>
-            <input
-                name="email"
-                placeholder="Enter email"
-                value={this.state.email}
-                type="email"
-                onChange={e => this.handleChange(e)}
-            />
-        </div>
-
-        <div>
-          <label>Password</label>
-            <input
-                name="password"
-                placeholder="Enter password"
-                value={this.state.password}
-                type="password"
-                onChange={e => this.handleChange(e)}
-            />
-        </div>
-        <div>
-          <label>Name</label>
-            <input
-                name="name"
-                placeholder="Enter Name"
-                value={this.state.name}
-                type="name"
-                onChange={e => this.handleChange(e)}
-            />
-        </div>
-        <div className="form">
-          <label>School</label>
-            <input
-                name="school"
-                placeholder="Enter School"
-                value={this.state.school}
-                className="form-control"
-                type="school"
-                onChange={e => this.handleChange(e)}
-            />
-        </div>
-        <button >Sign Up</button>
-      </form>
-      </div>
+       <div>
+         <label>Password</label>
+           <input
+               name="password"
+               placeholder="Enter password"
+               value={this.state.password}
+               type="password"
+               onChange={e => this.handleChange(e)}
+           />
+       </div>
+       <div>
+         <label>Name</label>
+           <input
+               name="name"
+               placeholder="Enter Name"
+               value={this.state.name}
+               type="name"
+               onChange={e => this.handleChange(e)}
+           />
+       </div>
+       <div className="form">
+         <label>School</label>
+           <input
+               name="school"
+               placeholder="Enter School"
+               value={this.state.school}
+               className="form-control"
+               type="school"
+               onChange={e => this.handleChange(e)}
+           />
+       </div>
+       <button >Sign Up</button>
+     </form>
+     </div>
     );
   }
 }

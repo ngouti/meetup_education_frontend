@@ -27,7 +27,7 @@ export default class EventForm extends React.Component {
 
 
   postNewEvent = () => {
-    fetch('http://localhost:3000/events/create_organizer', {
+    fetch('http://localhost:3000/events/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

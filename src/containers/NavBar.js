@@ -57,22 +57,34 @@ export default class NavBar extends React.Component {
                         <Link to={`/users/${this.props.currentUser.id}`}>{this.props.currentUser.name}</Link> 
                       </NavLink>
                     </NavItem>
-                  
+                    <div onClick={ this.props.logout }>
                     <NavItem >
+                      <NavLink>
+                        <Link to='/' > Logout </Link> 
+                      </NavLink>
+                    </NavItem>
+                    </div>
+                    {/* <NavItem >
                       <div onClick={ this.props.logout }>
                         Logout
                       </div>
                      
-                    </NavItem>
+                    </NavItem> */}
                   </Nav>
                 
                 :
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                    
-                      <NavLink> 
+                    <div onClick={ this.props.login }>
+                    <NavItem >
+                      <NavLink>
                         <Link to="/login"> Login </Link> 
                       </NavLink>
+                    </NavItem>
+                    </div>
+                      {/* <NavLink> 
+                        <Link to="/login"> Login </Link> 
+                      </NavLink> */}
 
                     </NavItem>
                     <NavItem>

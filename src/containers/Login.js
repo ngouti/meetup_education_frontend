@@ -1,13 +1,14 @@
 import React from 'react'
 import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './login.css'
-
+import { Alert } from "react-bootstrap";
 
 class Login extends React.Component {
 
     state = {
         username: '',
-        password: ''
+        password: '',
+        errors: null
     }
 
     routeTo = url => {
@@ -19,7 +20,19 @@ class Login extends React.Component {
             [e.target.name]:e.target.value
         })
     }
-    
+  
+  
+    errorBox() {
+      
+      if (  this.state.errors) {
+        return (
+          <Alert role="alert">
+            {  this.state.errors}
+          </Alert>
+        )    
+      }
+    }
+
       login = e => {
         e.preventDefault();
         // console.log(e)
@@ -35,13 +48,20 @@ class Login extends React.Component {
           })
         })
           .then(res => res.json())
-          .then(res => {
-            this.props.setUser(res.token, res)
-            this.props.history.push(`/users/${res.id}`)
+          // .then(res => {
+          //   this.props.setUser(res.token, res)
+          //   this.props.history.push(`/users/${res.id}/UserProfile`)
         
-            })
+          //   })
   
-
+          .then(res => {
+            if (res.message === "Wrong username or password") {
+              this.setState({ errors: res.message })
+            } else {
+              this.props.setUser(res.token, res)
+              this.props.history.push(`/users/${res.id}/UserProfile`);
+            }
+      });
       }
     
     
@@ -50,7 +70,7 @@ class Login extends React.Component {
 
         return (
           <div>
-              
+              {this.errorBox()}
             
           <div className="ui raised very padded text container segment">
         

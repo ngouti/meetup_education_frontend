@@ -16,6 +16,8 @@ export default class EventPage extends Component {
             }
         })
         .then( res => res.json())
+        
+
         .then( selectedEvent => this.setState({ selectedEvent }))
     }
 
