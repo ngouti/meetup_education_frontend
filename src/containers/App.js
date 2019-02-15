@@ -35,6 +35,7 @@ class App extends Component {
   logout = () => {
     localStorage.clear()
     this.setState({ token: null, user: null})
+  
   }
 
   render() {
@@ -67,7 +68,6 @@ class App extends Component {
               {/* <React.Fragment> */}
                 {/* <Route path="/login" render={(props) => <Login {...props} setUser={this.setCurrentUser} />} />
                 <Route path="/signup" render={ props => <SignUp {...props} onSignUp={this.setCurrentUser} />}/>
-                {console.log('this far')} */}
               {/* </React.Fragment> */}
             {/* : */}
             {/* <React.Fragment> */}

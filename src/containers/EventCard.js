@@ -11,8 +11,9 @@ export default class Event extends Component {
 
 
   render() {
-    console.log('props', this.props)
-    
+    console.log('this.props',this.props)
+    console.log('this.props.event',this.props.event.title)
+
     return (
       <div>
 

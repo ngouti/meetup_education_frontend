@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar'
-import EventCard from './EventCard';
-
+import EventCard from './EventCard'
+import UserCard from './UserCard'
+import EventForm from './EventForm'
+import './UserProfile.css'
 
 export default class UserProfile extends Component {
 
@@ -39,6 +40,7 @@ export default class UserProfile extends Component {
         .then(res => res.json())
             .then( organizing => this.setState({ organizing }))
             .then(() => this.filterForOrganizing())
+
     }
 
     filterForOrganizing(){
@@ -61,7 +63,7 @@ export default class UserProfile extends Component {
                 Authorization: `BEARER ${this.props.token}`
             }
         })
-        .then(res => res.json())
+            .then(res => res.json())
             .then( attending => this.setState({ attending }))
             .then(() => this.filterForAttending())
 
@@ -79,55 +81,50 @@ export default class UserProfile extends Component {
         })
     }
 
+  
+
     render() {
-       console.log('organizing these:', this.state.organizing)
-       console.log('attending these:' , this.state.attending)
-        let organizing = []
-        let attending = []
+    //    console.log('organizing these:', this.state.organizing)
+    //    console.log('attending these:' , this.state.attending)
+    //     let organizing = []
+    //     let attending = []
         
-        if (organizing !== []) {this.state.organizing.map ( oe => (oe.map( e => (organizing.push(e)))))}
-        if (attending !== []) {this.state.attending.map ( oe => (oe.map( e => (attending.push(e)))))}
-        console.log('this', attending)
+    //     if (organizing !== []) {this.state.organizing.map ( oe => (oe.map( e => (organizing.push(e)))))}
+    //     if (attending !== []) {this.state.attending.map ( oe => (oe.map( e => (attending.push(e)))))}
+        // console.log('this', attending)
        
         const { name, email } = this.state.user
 
         return (
-            <div className="ui raised very padded text container segment">
-
-            <h3>{name}</h3>
-            <p>
-             <h4> Contact Info:  </h4>
-             {email} 
-            </p>
-
-
-            <div id="organizing">
-            <h4> Events Organizing:</h4>
-            {organizing.map( oe => {
-                return <EventCard event={oe} />
-               
-            })}
-
-            </div>
-
-            <div>
-            <h4> Events Attending:</h4>
-
-            {
-                attending !== []
-                ?   <p> this is not equal to an empty array</p>
+            <div className="card">
+                <UserCard {...this.state.user}/>
+    
                 
-                :  <p> You are not attending any events; this is equal to an empty array</p> 
-                   
-                 
-            }
+                <h4> Events You're Organizing  </h4>
+                
+                <div>
             
-
+                    {this.state.organizing.map(o => (
+                        o.map(i => (
+                            <EventCard event={i}/> 
+                        ))
+                        
+                    ))}
+                </div>
 
                 
+                <h4> Events You're Attending  </h4>
 
-            </div>
-            
+                <div>
+                {this.state.attending.map(o => (
+                    o.filter(i=>
+                    i.title !== null
+                    ).map(i => (
+                        <EventCard  event={i}/> 
+                    ))
+                
+                ))}
+                </div>
          </div>
         );
     }
