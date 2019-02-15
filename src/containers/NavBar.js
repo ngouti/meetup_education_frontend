@@ -39,14 +39,12 @@ export default class NavBar extends React.Component {
                 this.props.currentUser
                 ?
                   <Nav className="ml-auto" navbar>
-                    <NavItem>
+                  <NavItem>
                       <NavLink>
-                        <Link to="/events"> My Events </Link> 
+                        <Link to="/events/new"> Create an Event</Link> 
                       </NavLink>
                     </NavItem>
-
-
-                    <NavItem>
+                 <NavItem>
                       <NavLink>
                         <Link to="/events"> See All Events </Link> 
                       </NavLink>

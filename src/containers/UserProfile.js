@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar'
+import EventCard from './EventCard'
+import UserCard from './UserCard'
+import EventForm from './EventForm'
+import './UserProfile.css'
 
 export default class UserProfile extends Component {
 
@@ -35,6 +38,7 @@ export default class UserProfile extends Component {
         .then(res => res.json())
             .then( organizing => this.setState({ organizing }))
             .then(() => this.filterForOrganizing())
+
     }
 
     filterForOrganizing(){
@@ -57,7 +61,7 @@ export default class UserProfile extends Component {
                 Authorization: `BEARER ${this.props.token}`
             }
         })
-        .then(res => res.json())
+            .then(res => res.json())
             .then( attending => this.setState({ attending }))
             .then(() => this.filterForAttending())
 
@@ -75,20 +79,46 @@ export default class UserProfile extends Component {
         })
     }
 
+  
+
     render() {
-       console.log(this.state.organizing)
-       console.log(this.state.attending)
+       console.log('org',this.state.organizing)
+       console.log('atend', this.state.attending)
 
         const { name, email } = this.state.user
         return (
-            <div className="ui raised very padded text container segment">
-
-            <h3>{name}</h3>
+            <div className="card">
+            <UserCard {...this.state.user}/>
+    
             <p>
-             <h4> Contact Info:  </h4>
-             {email} 
+             <h4> Events You're Organizing  </h4>
+             
             </p>
-            
+            <div>
+            {/* {this.state.organizing.map(o => (
+                <EventCard event={o}/>
+            ))} */}
+            {this.state.organizing.map(o => (
+                o.map(i => (
+                    <EventCard event={i}/> 
+                ))
+                
+            ))}
+            </div>
+            <p>
+             <h4> Events You're Attending  </h4>
+             
+            </p>
+            <div>
+             {this.state.attending.map(o => (
+                o.filter(i=>
+                i.title !== null
+                ).map(i => (
+                    <EventCard  event={i}/> 
+                ))
+                
+            ))}
+            </div>
          </div>
         );
     }
