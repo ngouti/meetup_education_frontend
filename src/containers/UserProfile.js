@@ -3,6 +3,7 @@ import NavBar from './NavBar'
 
 export default class UserProfile extends Component {
 
+    //FILTER THROUGH STATE AND DISPLAY EACH
     state = {
         user: {},
         organizing: [],
@@ -11,7 +12,6 @@ export default class UserProfile extends Component {
     }
 
     componentDidMount(){
-        // console.log(`${this.props.match.params.id}`)
         fetch(`http://localhost:3000/users/${this.props.match.params.id}`,{
             headers:{
                 Authorization: `BEARER ${this.props.token}`
@@ -81,9 +81,15 @@ export default class UserProfile extends Component {
 
         const { name, email } = this.state.user
         return (
-            <div>
-                {/* <NavBar user={this.state.user} name={name} currentUser={this.props.currentUser}/> */}
-            </div>
+            <div className="ui raised very padded text container segment">
+
+            <h3>{name}</h3>
+            <p>
+             <h4> Contact Info:  </h4>
+             {email} 
+            </p>
+            
+         </div>
         );
     }
 }
