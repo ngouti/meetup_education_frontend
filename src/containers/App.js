@@ -7,9 +7,6 @@ import SignUp from './SignUp'
 import UserProfile from './UserProfile'
 import EventList from './EventList'
 import EventForm from './EventForm'
-
-
-
 import NavBar from './NavBar'
 import EventPage from '../containers/EventPage';
 
@@ -22,6 +19,7 @@ class App extends Component {
   state = {
     token: localStorage.getItem('token'),
     user: JSON.parse(localStorage.getItem('user')) || null
+   
   }
 
   setCurrentUser = (token, user) => {
@@ -32,7 +30,6 @@ class App extends Component {
       token: token, 
       user: user 
     })
-  
   }
 
   logout = () => {

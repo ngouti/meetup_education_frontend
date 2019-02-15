@@ -16,8 +16,6 @@ export default class EventPage extends Component {
             }
         })
         .then( res => res.json())
-        
-
         .then( selectedEvent => this.setState({ selectedEvent }))
     }
 
@@ -37,8 +35,11 @@ export default class EventPage extends Component {
     }
 
 
+
+
     render() {  
         const { title, description, location, date } = this.state.selectedEvent
+        console.log(this.state.selectedEvent)
         
         return (
         <div>
@@ -59,7 +60,7 @@ export default class EventPage extends Component {
                     </button>
                     <div class="or"></div>
 
-                    { this.props.currentUser
+                    { this.props.currentUser 
                     ?
                         <button 
                         class="ui positive button"

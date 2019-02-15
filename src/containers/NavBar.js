@@ -45,13 +45,6 @@ export default class NavBar extends React.Component {
                       </NavLink>
                     </NavItem>
 
-
-                    <NavItem>
-                      <NavLink>
-                        <Link to="/events"> See All Events </Link> 
-                      </NavLink>
-                    </NavItem>
-
                     <NavItem>
                       <NavLink>
                         <Link to={`/users/${this.props.currentUser.id}`}>{this.props.currentUser.name}</Link> 

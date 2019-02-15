@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar'
+import EventCard from './EventCard';
+
 
 export default class UserProfile extends Component {
 
@@ -7,7 +9,9 @@ export default class UserProfile extends Component {
     state = {
         user: {},
         organizing: [],
-        attending: []
+        filteredOrganizing: [],
+        attending: [],
+        filteredAttending: []
         
     }
 
@@ -39,7 +43,7 @@ export default class UserProfile extends Component {
 
     filterForOrganizing(){
         let events = this.state.organizing[1]
-       let userevents = this.state.organizing[0].filter(ue => (
+        let userevents = this.state.organizing[0].filter(ue => (
             ue.user_id === this.state.user.id
         ))
         let arrayofEvents = userevents.map(ue => ue.event_id)
@@ -65,7 +69,7 @@ export default class UserProfile extends Component {
 
     filterForAttending(){
         let events = this.state.attending[1]
-       let userattending = this.state.attending[0].filter(ue => (
+        let userattending = this.state.attending[0].filter(ue => (
             ue.user_id === this.state.user.id
         ))
         let arrayofEvents = userattending.map(ue => ue.event_id)
@@ -76,10 +80,17 @@ export default class UserProfile extends Component {
     }
 
     render() {
-    //    console.log(this.state.organizing)
-    //    console.log(this.state.attending)
-
+       console.log('organizing these:', this.state.organizing)
+       console.log('attending these:' , this.state.attending)
+        let organizing = []
+        let attending = []
+        
+        if (organizing !== []) {this.state.organizing.map ( oe => (oe.map( e => (organizing.push(e)))))}
+        if (attending !== []) {this.state.attending.map ( oe => (oe.map( e => (attending.push(e)))))}
+        console.log('this', attending)
+       
         const { name, email } = this.state.user
+
         return (
             <div className="ui raised very padded text container segment">
 
@@ -88,6 +99,34 @@ export default class UserProfile extends Component {
              <h4> Contact Info:  </h4>
              {email} 
             </p>
+
+
+            <div id="organizing">
+            <h4> Events Organizing:</h4>
+            {organizing.map( oe => {
+                return <EventCard event={oe} />
+               
+            })}
+
+            </div>
+
+            <div>
+            <h4> Events Attending:</h4>
+
+            {
+                attending !== []
+                ?   <p> this is not equal to an empty array</p>
+                
+                :  <p> You are not attending any events; this is equal to an empty array</p> 
+                   
+                 
+            }
+            
+
+
+                
+
+            </div>
             
          </div>
         );

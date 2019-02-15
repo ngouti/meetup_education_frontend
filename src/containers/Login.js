@@ -27,7 +27,7 @@ class Login extends React.Component {
       if (  this.state.errors) {
         return (
           <Alert role="alert">
-            {  this.state.errors}
+            {  this.state.errors }
           </Alert>
         )    
       }
