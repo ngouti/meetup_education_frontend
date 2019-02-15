@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { Switch } from 'react-router'
 
 import Login from './Login'
@@ -21,7 +21,7 @@ class App extends Component {
 
   state = {
     token: localStorage.getItem('token'),
-    user: JSON.parse(localStorage.getItem('user')) || {}
+    user: JSON.parse(localStorage.getItem('user')) || null
   }
 
   setCurrentUser = (token, user) => {
@@ -32,42 +32,48 @@ class App extends Component {
       token: token, 
       user: user 
     })
-    // console.log('after',user)
-
-    // debugger
+  
   }
 
-  
-
-
-
-  // logoutUser = () => {
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('user');
-  //   // this.setCurrentUser(null);
-  //   this.props.history.push("/login");
-  // }
-
-
+  logout = () => {
+    localStorage.clear()
+    this.setState({ token: null, user: null})
+  }
 
   render() {
+    
     return (
       <div className="App">
 
      
-      <NavBar currentUser={this.state.user}/>
       <Router>
-        <Switch>
-          <Route exact path="/events" component={(props) =>  <EventList {...props} token={this.state.token} />} />
-          <Route path="/events/new" component={(props) =>  <EventForm {...props} token={this.state.token} currentUser={this.state.user} />} />
-          <Route path="/events/:id" component={(props) =>  <EventPage {...props} token={this.state.token} currentUser={this.state.user} />} />
-          <Route path="/events/:id/edit" component={(props) =>  <EventForm {...props} token={this.state.token}  />} />
-          
-          <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} currentUser={this.state.user}/>} />
+        <React.Fragment>
+        <NavBar currentUser={this.state.user} logout={this.logout}/>
 
-          <Route path="/login" render={(props) =>  <Login {...props} setUser={this.setCurrentUser} />} />
-          <Route path="/signup" render={ props => <SignUp {...props} onSignUp={this.setCurrentUser} />}/>
+        <Switch>
+          {
+            !this.state.user
+            ? 
+              <React.Fragment>
+                <Route path="/login" render={(props) => <Login {...props} setUser={this.setCurrentUser} />} />
+                <Route path="/signup" render={ props => <SignUp {...props} onSignUp={this.setCurrentUser} />}/>
+                {console.log('this far')}
+              </React.Fragment>
+            :
+            <React.Fragment>
+              <Route exact path="/events" component={(props) =>  <EventList {...props} token={this.state.token} />} />
+              <Route path="/events/new" component={(props) =>  <EventForm {...props} token={this.state.token} currentUser={this.state.user} />} />
+              <Route path="/events/:id" component={(props) =>  <EventPage {...props} token={this.state.token} currentUser={this.state.user} />} />
+              <Route path="/events/:id/edit" component={(props) =>  <EventForm {...props} token={this.state.token}  />} />
+              <Route path="/users/:id" component={props => <UserProfile {...props} token={this.state.token} currentUser={this.state.user}/>} />
+            </React.Fragment>
+
+          }
+          
+
+          
         </Switch>
+        </React.Fragment>
       </Router>
        
       </div>

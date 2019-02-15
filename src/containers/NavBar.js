@@ -6,11 +6,10 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavLink
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -41,24 +40,45 @@ export default class NavBar extends React.Component {
                 ?
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink href="./EventList">Events</NavLink>
+                      <NavLink>
+                        <Link to="/events"> See All Events </Link> 
+                      </NavLink>
                     </NavItem>
+
+
                     <NavItem>
-                      <NavLink href="./EventsContainer">My Events</NavLink>
+                      <NavLink>
+                        <Link to="/events"> See All Events </Link> 
+                      </NavLink>
                     </NavItem>
+
                     <NavItem>
-                     {/* <NavLink href="UserProfile">{this.props.name}</NavLink>  */}
-                      <NavLink href="UserProfile">{this.props.currentUser.name}</NavLink>
+                      <NavLink>
+                        <Link to={`/users/${this.props.currentUser.id}`}>{this.props.currentUser.name}</Link> 
+                      </NavLink>
+                    </NavItem>
+                  
+                    <NavItem >
+                      <div onClick={ this.props.logout }>
+                        Logout
+                      </div>
+                     
                     </NavItem>
                   </Nav>
                 
                 :
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink href="./login">Login</NavLink>
+                    
+                      <NavLink> 
+                        <Link to="/login"> Login </Link> 
+                      </NavLink>
+
                     </NavItem>
                     <NavItem>
-                      <NavLink href="./signup">Sign Up</NavLink>
+                      <NavLink>
+                        <Link to="/signup"> Sign Up </Link> 
+                      </NavLink>
                     </NavItem>
                   </Nav>
               }

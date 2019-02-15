@@ -21,7 +21,7 @@ export default class EventPage extends Component {
 
 
     onAttend = () => {
-        fetch('http://localhost:3000/user_events', {
+        fetch(`http://localhost:3000/events/${this.state.selectedEvent.id}/create_attendee`, {
             'method': 'post',
             'headers': {
                 'Content-Type': 'application/json',
@@ -56,12 +56,23 @@ export default class EventPage extends Component {
                         Go Back to All Events
                     </button>
                     <div class="or"></div>
-                    <button 
+
+                    { this.props.currentUser
+                    ?
+                        <button 
                         class="ui positive button"
                         onClick = { this.onAttend }
-                    >
+                        >
                         Attend this Event
-                    </button>
+                        </button>
+                    : 
+                        <button 
+                        class="ui negative button"
+                        onClick = { this.onAttend }
+                        >
+                         Delete this Event
+                        </button>}
+                    
                 </div>
                 </div>
             

@@ -1,6 +1,5 @@
 import React from "react";
-
-// import { server } from './server'
+import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './signup.css'
 
 export class SignUp extends React.Component {
@@ -38,32 +37,27 @@ export class SignUp extends React.Component {
       .then(() => {
         this.routeTo('/login')
          })
-
-      // .then(console.log)
-
-
-    // server.post(`http://localhost:3000/users`, JSON.stringify(this.state))
-    //         .then(user => console.log('user', user))
-            // .then(() => {
-            //     this.routeTo('/login')
-            //   })
-            // //   debugger
-            //   .then(console.log)
-
   }
 
   routeTo = url => {
     this.props.history.push(url);
   }
 
+  
   render() {
     return (
-      <div className="signup">
-      <form onSubmit={e => {this.handleSubmit(e);}}>
+        <div className="ui raised very padded text container segment signup">
+           
+
+
+
+
+
+       <form onSubmit={e => {this.handleSubmit(e);}}>
         <h3>SignUp</h3>
         <div>
-          <label>Username</label>
-            <input
+        <label>Username</label>
+          <input
                 name="username"
                 placeholder="Enter username"
                 value={this.state.username}
@@ -121,3 +115,67 @@ export class SignUp extends React.Component {
 }
 
 export default SignUp
+
+
+
+
+
+
+
+
+// render() {
+//   return (
+//       <div className="ui raised very padded text container segment signup">
+         
+
+//         <h1>Sign Up</h1>
+//             <Form>
+//               <FormGroup row>
+//               <Label for="exampleEmail" sm={2} size="lg">Username</Label>
+//               <Col sm={10}>
+              
+//                   <Input onChange={e => this.handleChange(e)} value={this.state.username} name="username" type="text" placeholder="Enter UserName" bsSize="lg" />
+//               </Col>
+//               </FormGroup>
+
+//               <FormGroup row>
+//               <Label for="exampleEmail" sm={2} size="lg">Email</Label>
+//               <Col sm={10}>
+              
+//                   <Input onChange={e => this.handleChange(e)} value={this.state.email} name="email" type="text" placeholder="Enter Email Address" bsSize="lg" />
+//               </Col>
+//               </FormGroup>
+
+
+//               <FormGroup row>
+//               <Label for="exampleEmail" sm={2} size="lg">Name</Label>
+//               <Col sm={10}>
+              
+//                   <Input onChange={e => this.handleChange(e)} value={this.state.email} name="name" type="text" placeholder="Enter Your Name" bsSize="lg" />
+//               </Col>
+//               </FormGroup>
+
+
+
+//               <FormGroup row>
+//               <Label for="exampleEmail" sm={2} size="lg">School</Label>
+//               <Col sm={10}>
+              
+//                   <Input onChange={e => this.handleChange(e)} value={this.state.email} name="school" type="text" placeholder="Enter School" bsSize="lg" />
+//               </Col>
+//               </FormGroup>
+
+//               <FormGroup row>
+//               <Label for="exampleEmail2" sm={2}>Password</Label>
+//               <Col sm={10}>
+//                   <Input onChange={e => this.handleChange(e)} value={this.state.password} name="password" type="password" placeholder="Password" />
+//               </Col>
+//               </FormGroup>
+//               <Button onClick={this.login}>Submit</Button>
+//           </Form>
+//         </div>
+//   )
+
+
+
+// }}

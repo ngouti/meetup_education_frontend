@@ -22,8 +22,14 @@ export default class UserProfile extends Component {
        
         const { name, email } = this.state.user
         return (
-            <div>
-                {/* <NavBar user={this.state.user} name={name} currentUser={this.props.currentUser}/> */}
+            <div className="ui raised very padded text container segment">
+
+               <h3>{name}</h3>
+               <p>
+                <h4> Contact Info:  </h4>
+                {email} 
+               </p>
+               
             </div>
         );
     }
