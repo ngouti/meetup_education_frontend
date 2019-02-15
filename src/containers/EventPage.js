@@ -6,7 +6,8 @@ import NavBar from './NavBar'
 
 export default class EventPage extends Component {
     state = {
-        selectedEvent: {}
+        selectedEvent: {},
+        organizer: []
     }
 
     componentDidMount(){
@@ -31,6 +32,28 @@ export default class EventPage extends Component {
                 user_id: this.props.currentUser.id, // find out if this is the best way to get current user
                 event_id: this.state.selectedEvent.id
             })
+        })
+        .then( res => res.json())
+        .then( () => this.props.history.push(`/users/${this.props.currentUser.id}`)) 
+    }
+
+
+
+
+    patchRequest = () => {
+        fetch(`http://localhost:3000/events/${this.state.selectedEvent.id}`,{
+            'method': 'patch',
+            'headers': {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            },
+            'body': JSON.stringify(
+                {
+                  title: this.state.selectedEvent.title,
+                  description: this.state.selectedEvent.description
+                  
+                }
+            )
         })
     }
 
@@ -59,9 +82,11 @@ export default class EventPage extends Component {
                         Go Back to All Events
                     </button>
                     <div class="or"></div>
+                    
 
                     { this.props.currentUser 
-                    ?
+                    ?   
+                      
                         <button 
                         class="ui positive button"
                         onClick = { this.onAttend }
@@ -69,12 +94,23 @@ export default class EventPage extends Component {
                         Attend this Event
                         </button>
                     : 
-                        <button 
-                        class="ui negative button"
-                        onClick = { this.onAttend }
-                        >
-                         Delete this Event
-                        </button>}
+                        <div>
+                            <button 
+                            class="ui secondary button"
+                            onClick = { this.onEdit }
+                            >
+                            Edit this Event
+                            </button>
+                        
+                            <button 
+                            class="ui negative button"
+                            onClick = { this.onDelete }
+                            >
+                            Delete this Event
+                            </button>
+                      
+                        </div>
+                    }
                     
                 </div>
                 </div>

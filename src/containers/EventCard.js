@@ -11,8 +11,8 @@ export default class Event extends Component {
 
 
   render() {
-    console.log('this.props',this.props)
-    console.log('this.props.event',this.props.event.title)
+    // console.log('this.props',this.props)
+    // console.log('this.props.event',this.props.event.title)
 
     return (
       <div>
@@ -34,7 +34,7 @@ export default class Event extends Component {
                     </Button>
                 </Link>
 
-                
+
                 <Link to={`/events/${this.props.event.id}`}>
                     <Button basic color='red' >
                         Delete Event

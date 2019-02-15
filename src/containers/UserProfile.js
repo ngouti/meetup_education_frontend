@@ -38,8 +38,8 @@ export default class UserProfile extends Component {
             }
         })
         .then(res => res.json())
-            .then( organizing => this.setState({ organizing }))
-            .then(() => this.filterForOrganizing())
+        .then( organizing => this.setState({ organizing }))
+        .then(() => this.filterForOrganizing())
 
     }
 
@@ -84,6 +84,7 @@ export default class UserProfile extends Component {
   
 
     render() {
+    
        
         const { name, email } = this.state.user
 
@@ -116,7 +117,8 @@ export default class UserProfile extends Component {
                         o.filter(i=>
                         i.title !== null
                         ).map(i => (
-                            <EventCard event={i}/> 
+                            // console.log('event', i.)
+                            <EventCard event={i} /> 
                         ))
                     
                     ))}
