@@ -1,6 +1,5 @@
 import React from "react";
-
-// import { server } from './server'
+import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './signup.css'
 
 export class SignUp extends React.Component {
@@ -59,12 +58,7 @@ export class SignUp extends React.Component {
   render() {
     return (
       <div className="ui raised very padded text container segment signup">
-           
-
-
-
-
-
+  
       <form onSubmit={e => {this.handleSubmit(e);}}>
        <h3>SignUp</h3>
        <div>

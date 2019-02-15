@@ -41,7 +41,7 @@ export default class NavBar extends React.Component {
                   <Nav className="ml-auto" navbar>
                     <NavItem>
                       <NavLink>
-                        <Link to="/events"> See All Events </Link> 
+                        <Link to="/events"> My Events </Link> 
                       </NavLink>
                     </NavItem>
 
@@ -57,19 +57,13 @@ export default class NavBar extends React.Component {
                         <Link to={`/users/${this.props.currentUser.id}`}>{this.props.currentUser.name}</Link> 
                       </NavLink>
                     </NavItem>
-                    <div onClick={ this.props.login }>
+                    <div onClick={ this.props.logout }>
                     <NavItem >
                       <NavLink>
-                        <Link to="/login"> Login </Link> 
+                        <Link to='/' > Logout </Link> 
                       </NavLink>
                     </NavItem>
                     </div>
-                    <NavItem onClick={ this.props.logout }>
-                      <NavLink>
-                        <Link to="/"> Logout </Link> 
-                      </NavLink>
-                    </NavItem>
-                  
                     {/* <NavItem >
                       <div onClick={ this.props.logout }>
                         Logout
@@ -81,10 +75,16 @@ export default class NavBar extends React.Component {
                 :
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                    
-                      <NavLink> 
+                    <div onClick={ this.props.login }>
+                    <NavItem >
+                      <NavLink>
                         <Link to="/login"> Login </Link> 
                       </NavLink>
+                    </NavItem>
+                    </div>
+                      {/* <NavLink> 
+                        <Link to="/login"> Login </Link> 
+                      </NavLink> */}
 
                     </NavItem>
                     <NavItem>
