@@ -42,12 +42,14 @@ class App extends Component {
 
 
   logoutUser = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.setCurrentUser(null);
-    if(this.state.currentUser === null) {
-      this.props.history.push("/login");
-    }
+    localStorage.clear()
+    this.setState({ token: null, user: null})
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('user');
+    // this.setCurrentUser(null);
+    // if(this.state.currentUser === null) {
+    //   this.props.history.push("/login");
+    // }
   }
 
 
