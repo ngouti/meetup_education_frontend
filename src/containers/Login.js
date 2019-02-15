@@ -40,16 +40,17 @@ class Login extends React.Component {
             this.props.history.push(`/users/${res.id}`)
         
             })
-            // debugger
-        //   .then(console.log)
+  
 
       }
     
     
       render() {
+
+
         return (
-            <div>
-                <NavBar />
+          <div>
+              
             
           <div class="login">
             

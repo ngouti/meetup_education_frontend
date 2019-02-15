@@ -4,7 +4,7 @@ import NavBar from './NavBar'
 export default class UserProfile extends Component {
 
     state = {
-        user: {}
+        user: {} // note:this is the user of the page we're not, but NOT current user
     }
 
     componentDidMount(){
@@ -19,14 +19,13 @@ export default class UserProfile extends Component {
     }
 
     render() {
-        // console.log(this.state.user)
+       
         const { name, email } = this.state.user
         return (
             <div>
-                <NavBar user={this.state.user} name={name}/>
+                {/* <NavBar user={this.state.user} name={name} currentUser={this.props.currentUser}/> */}
             </div>
         );
     }
 }
-
 
