@@ -12,7 +12,7 @@ As a user, you can...
 + log out
 
 ### For Backend
-[https://github.com/nclairesays/meetup_education_backend](Backend Code)
+<https://github.com/nclairesays/meetup_education_backend>
 
 ## Run the app
 
