@@ -16,12 +16,13 @@ As a user, you can...
 
 ## Run the app
 
-In the project directory, you can run:
+After you run the backend server, in the project directory, you can run:
 
 ###  `npm install && npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It'll ask if you want to change ports since port 3000 will be used by the rails server.  Enter yes.
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
