@@ -27,7 +27,7 @@ class Login extends React.Component {
       if (  this.state.errors) {
         return (
           <Alert role="alert">
-            {  this.state.errors}
+            {  this.state.errors }
           </Alert>
         )    
       }
@@ -72,7 +72,8 @@ class Login extends React.Component {
           <div>
               {this.errorBox()}
             
-          <div class="login">
+          <div className="ui raised very padded text container segment">
+        
             
 
           <h1>Login</h1>
@@ -86,15 +87,16 @@ class Login extends React.Component {
                 <FormGroup row>
                 <Label for="exampleEmail2" sm={2}>Password</Label>
                 <Col sm={10}>
-                    <Input onChange={this.handleChange} value={this.state.password} name="password" type="text" placeholder="Password" />
+                    <Input onChange={this.handleChange} value={this.state.password} name="password" type="password" placeholder="Password" />
                 </Col>
                 </FormGroup>
                 <Button onClick={this.login}>Submit</Button>
             </Form>
-
-
-            
           </div>
+
+
+
+
           </div>
         )
       }

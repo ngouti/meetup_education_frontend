@@ -87,3 +87,5 @@ export default class EventList extends Component {
 //     </CardGroup>
 //   );
 // };
+
+// export default EventList;

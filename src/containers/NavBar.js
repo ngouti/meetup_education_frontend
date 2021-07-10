@@ -30,7 +30,9 @@ export default class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">MeetUp Education</NavbarBrand>
+          <NavbarBrand>   
+            <Link to="/home"> MeetUp Education</Link> 
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
            

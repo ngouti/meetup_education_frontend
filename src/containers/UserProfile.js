@@ -10,7 +10,9 @@ export default class UserProfile extends Component {
     state = {
         user: {},
         organizing: [],
-        attending: []
+        filteredOrganizing: [],
+        attending: [],
+        filteredAttending: []
         
     }
 
@@ -36,14 +38,14 @@ export default class UserProfile extends Component {
             }
         })
         .then(res => res.json())
-            .then( organizing => this.setState({ organizing }))
-            .then(() => this.filterForOrganizing())
+        .then( organizing => this.setState({ organizing }))
+        .then(() => this.filterForOrganizing())
 
     }
 
     filterForOrganizing(){
         let events = this.state.organizing[1]
-       let userevents = this.state.organizing[0].filter(ue => (
+        let userevents = this.state.organizing[0].filter(ue => (
             ue.user_id === this.state.user.id
         ))
         let arrayofEvents = userevents.map(ue => ue.event_id)
@@ -69,7 +71,7 @@ export default class UserProfile extends Component {
 
     filterForAttending(){
         let events = this.state.attending[1]
-       let userattending = this.state.attending[0].filter(ue => (
+        let userattending = this.state.attending[0].filter(ue => (
             ue.user_id === this.state.user.id
         ))
         let arrayofEvents = userattending.map(ue => ue.event_id)
@@ -82,44 +84,47 @@ export default class UserProfile extends Component {
   
 
     render() {
-       console.log('org',this.state.organizing)
-       console.log('atend', this.state.attending)
-
-        const { name, email } = this.state.user
-        return (
-            <div className="card">
-            <UserCard {...this.state.user}/>
     
-            <p>
-             <h4> Events You're Organizing  </h4>
-             
-            </p>
-            <div>
-            {/* {this.state.organizing.map(o => (
-                <EventCard event={o}/>
-            ))} */}
-            {this.state.organizing.map(o => (
-                o.map(i => (
-                    <EventCard event={i}/> 
-                ))
+       
+        const { name, email } = this.state.user
+
+        return (
+            <div className="ui raised very padded text container segment">
+            {/* <div > */}
+                <UserCard {...this.state.user}/>
+    
                 
-            ))}
-            </div>
-            <p>
-             <h4> Events You're Attending  </h4>
-             
-            </p>
-            <div>
-             {this.state.attending.map(o => (
-                o.filter(i=>
-                i.title !== null
-                ).map(i => (
-                    <EventCard  event={i}/> 
-                ))
+                {/* <div style={{width: '50%', float: 'left'}}> */}
+
+                    <h4> Events You're Organizing:  </h4>
+                    
+                    
                 
-            ))}
+                        {this.state.organizing.map(o => (
+                            o.map(i => (
+                                <EventCard event={i}/> 
+                            ))
+                            
+                        ))}
+                    
+                {/* </div> */}
+
+                {/* <div style={{width: '50%', float: 'left'}}> */}
+                    <h4> Events You're Attending:  </h4>
+
+                
+                    {this.state.attending.map(o => (
+                        o.filter(i=>
+                        i.title !== null
+                        ).map(i => (
+                            // console.log('event', i.)
+                            <EventCard event={i} /> 
+                        ))
+                    
+                    ))}
+                    
+                {/* </div> */}
             </div>
-         </div>
         );
     }
 }

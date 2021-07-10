@@ -41,11 +41,27 @@ export default class EventForm extends React.Component {
       )
     })
     .then( res => res.json())
-    // .then(res => console.log(res))
     // .then( ({ id }) => this.postToUserEvents(id)  )
     .then( ({ id }) => this.props.history.push(`/events/${id}`)) 
   }
 
+
+  // postToUserEvents = (eventID) => {
+  //   fetch('http://localhost:3000/user_arrangements', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${this.props.token}`
+  //     },
+  //     body: JSON.stringify(
+  //       {
+  //         user_id: this.props.currentUser.id,
+  //         event_id: eventID
+  //       }
+  //     )
+  //   })
+  //   .then( () => this.props.history.push(`/events/${eventID}`)) 
+  // }
 
   render() {
    
